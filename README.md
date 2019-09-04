@@ -2,10 +2,10 @@
 
 ![RobotRss Logo](logo/text/robotrss_logo_text_512.png)
 
-![Github python](https://img.shields.io/badge/latest_release-1.0.2-lightgrey.svg)
-![Github python](https://img.shields.io/badge/python-2.7-blue.svg)
-[![GitHubissues](https://img.shields.io/github/issues/cbrgm/telegram-robot-rss.svg)](https://github.com/cbrgm/telegram-robot-rss/issues)
-[![GitHub license](https://img.shields.io/badge/telegram-%40RobotRssBot-blue.svg)](https://telegram.me/RobotRssBot)
+![Github python](https://img.shields.io/badge/latest_release-2.0.0-lightgrey.svg)
+![Github python](https://img.shields.io/badge/python-3.6-blue.svg)
+[![GitHubissues](https://img.shields.io/github/issues/cbrgm/telegram-robot-rss.svg)](https://github.com/jiezhi/telegram-robot-rss/issues)
+[![GitHub license](https://img.shields.io/badge/telegram-%40RssMeBot-blue.svg)](https://t.me/RssMeBot)
 
 ## Description
 
@@ -13,13 +13,13 @@ RobotRSS is an RSS Bot for the Telegram Messenger. Subscribe to different news c
 
 The latest stable release and release notes can be found [here][ba8097ee].
 
-  [ba8097ee]: https://github.com/cbrgm/telegram-robot-rss/releases "releases"
+  [ba8097ee]: https://github.com/jiezhi/telegram-robot-rss/releases "releases"
 
 ### Usage
 
-RobotRSS has an easy-to-use user interface to get started. Write the **official [@RobotRssBot][2f7e3ad7]** via telegram. Use the following commands to manage your subscriptions:
+RobotRSS has an easy-to-use user interface to get started. Write the **official [@RssMeBot][2f7e3ad7]** via telegram. Use the following commands to manage your subscriptions:
 
-[2f7e3ad7]: https://telegram.me/RobotRssBot "RobotRSS"
+[2f7e3ad7]: https://t.me/RssMeBot "RssMeBot"
 
 **Controls**  
 `/start` - Activates the bot. If you have subscribed to RSS feeds, you will receive news from now on  
@@ -39,7 +39,7 @@ RobotRSS has an easy-to-use user interface to get started. Write the **official 
 
 You have suggestions for improvements or features you miss? You are welcome to express all your wishes here. Just create a new [Issue][e872f832] and it will be taken care of quickly!
 
-[e872f832]: https://github.com/cbrgm/telegram-robot-rss/issues "RobotRSS Issues"
+[e872f832]: https://github.com/jiezhi/telegram-robot-rss/issues "RobotRSS Issues"
 
 If you are a developer yourself, you can also contribute code! Further information will follow shortly.
 
@@ -72,21 +72,21 @@ You can easily install all needed Dependencies using `pip`. Navigate into the pr
 
 You can easily run RobotRSS inside a Docker Container. The Dockerfile can be found in the project directory. Run `docker build --tag "RobotRSS:latest" .` to create a new Docker Image based on the current code.
 
-You can also pull the latest image from Dockerhub using `docker pull cynthek/RobotRSS:latest`.
+You can also pull the latest image from Dockerhub using `docker pull lencent/robotrss:latest`.
 
 To start your docker container use the following commands, passing `BOT_TOKEN` and optional `UPDATE_INTERVAL` environment variable to the container:
 
 ```bash
-docker run -itd --name "your-container-name" -e BOT_TOKEN="Enter your token" robotrss:latest
+docker run -itd --name "your-container-name" -e BOT_TOKEN="Enter your token" lencent/robotrss:latest
 # or use
-docker run -itd --name "your-container-name" -e BOT_TOKEN="Enter your token" -e UPDATE_INTERVAL=<Number in Minutes> robotrss:latest
+docker run -itd --name "your-container-name" -e BOT_TOKEN="Enter your token" -e UPDATE_INTERVAL=<Number in Minutes> lencent/robotrss:latest
 ```
 
 `UPDATE_INTERVAL` is set to 300 per default, updating feeds of subscribers every 5 minutes (300 sec).
 
 ## Python Version
 
-RobotRSS has been successfully tested with Python 2.7 .
+RobotRSS has been successfully tested with Python 3.6 .
 
 ## Dependencies
 

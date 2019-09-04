@@ -1,6 +1,6 @@
 # /bin/bash/python
 # encoding: utf-8
-
+from telegram.error import Unauthorized, TelegramError
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import ParseMode
 from util.filehandler import FileHandler
@@ -33,7 +33,10 @@ class RobotRss(object):
 
         # Start the Bot
         self.processing = BatchProcess(
-            database=self.db, update_interval=update_interval, bot=self.dispatcher.bot)
+            database=self.db,
+            update_interval=update_interval,
+            bot=self.dispatcher.bot
+        )
 
         self.processing.start()
         self.updater.start_polling()
@@ -55,7 +58,6 @@ class RobotRss(object):
 
         # Add new User if not exists
         if not self.db.get_user(telegram_id=telegram_user.id):
-
             message = "Hello! I don't think we've met before! I am an RSS News Bot and would like to help you to receive your favourite news in the future! Let me first set up a few things before we start..."
             update.message.reply_text(message)
 
@@ -90,7 +92,8 @@ class RobotRss(object):
         # Check if argument matches url format
         if not FeedHandler.is_parsable(url=arg_url):
             message = "Sorry! It seems like '" + \
-                str(arg_url) + "' doesn't provide an RSS news feed.. Have you tried another URL from that provider?"
+                      str(
+                          arg_url) + "' doesn't provide an RSS news feed.. Have you tried another URL from that provider?"
             update.message.reply_text(message)
             return
 
@@ -100,13 +103,13 @@ class RobotRss(object):
 
         if any(arg_url.lower() in entry for entry in entries):
             message = "Sorry, " + telegram_user.first_name + \
-                "! I already have that url with stored in your subscriptions."
+                      "! I already have that url with stored in your subscriptions."
             update.message.reply_text(message)
             return
 
         if any(arg_entry in entry for entry in entries):
             message = "Sorry! I already have an entry with name " + \
-                arg_entry + " stored in your subscriptions.. Please choose another entry name or delete the entry using '/remove " + arg_entry + "'"
+                      arg_entry + " stored in your subscriptions.. Please choose another entry name or delete the entry using '/remove " + arg_entry + "'"
             update.message.reply_text(message)
             return
 
@@ -139,14 +142,14 @@ class RobotRss(object):
 
         if url is None:
             message = "I can not find an entry with label " + \
-                args_entry + " in your subscriptions! Please check your subscriptions using /list and use the delete command again!"
+                      args_entry + " in your subscriptions! Please check your subscriptions using /list and use the delete command again!"
             update.message.reply_text(message)
             return
 
         entries = FeedHandler.parse_feed(url[0], args_count)
         for entry in entries:
             message = "[" + url[1] + "] <a href='" + \
-                entry.link + "'>" + entry.title + "</a>"
+                      entry.link + "'>" + entry.title + "</a>"
             print(message)
 
             try:
@@ -179,7 +182,8 @@ class RobotRss(object):
             update.message.reply_text(message)
         else:
             message = "I can not find an entry with label " + \
-                args[0] + " in your subscriptions! Please check your subscriptions using /list and use the delete command again!"
+                      args[
+                          0] + " in your subscriptions! Please check your subscriptions using /list and use the delete command again!"
             update.message.reply_text(message)
 
     def list(self, bot, update):

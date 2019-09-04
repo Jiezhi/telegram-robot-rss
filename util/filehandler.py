@@ -8,7 +8,7 @@ class FileHandler(object):
 
         if relative_root_path is not None:
             self.base_path = os.path.abspath(
-                os.path.dirname(__file__)) + "/" + relative_root_path + "/"
+                os.path.join(os.path.dirname(__file__), relative_root_path))
         else:
             self.base_path = os.path.abspath(
                 os.path.dirname(__file__))

@@ -45,8 +45,8 @@ class BatchProcess(threading.Thread):
 
         time_ended = datetime.datetime.now()
         duration = time_ended - time_started
-        print("Finished updating! Parsed " + str(len(queue)) +
-              " rss feeds in " + str(duration) + " !")
+        print("{0}: Finished updating! Parsed {1} rss feeds in {2} !".format(str(time_started), str(len(queue)),
+                                                                           str(duration)))
 
     def update_feed(self, url):
         telegram_users = self.db.get_users_for_url(url=url[0])
@@ -60,7 +60,8 @@ class BatchProcess(threading.Thread):
                 except:
                     traceback.print_exc()
                     message = "Something went wrong when I tried to parse the URL: \n\n " + \
-                        url[0] + "\n\nCould you please check that for me? Remove the url from your subscriptions using the /remove command, it seems like it does not work anymore!"
+                              url[
+                                  0] + "\n\nCould you please check that for me? Remove the url from your subscriptions using the /remove command, it seems like it does not work anymore!"
                     self.bot.send_message(
                         chat_id=user[0], text=message, parse_mode=ParseMode.HTML)
 
@@ -73,7 +74,7 @@ class BatchProcess(threading.Thread):
 
         if post_update_date > url_update_date:
             message = "[" + user[7] + "] <a href='" + post.link + \
-                "'>" + post.title + "</a>"
+                      "'>" + post.title + "</a>"
             try:
                 self.bot.send_message(
                     chat_id=user[0], text=message, parse_mode=ParseMode.HTML)

@@ -237,7 +237,8 @@ class DatabaseHandler(object):
         cursor = conn.cursor()
 
         cursor.execute(
-            "SELECT user.*, web_user.alias FROM user, web_user WHERE web_user.telegram_id = user.telegram_id AND web_user.url ='" + str(url) + "';")
+            "SELECT user.*, web_user.alias FROM user, web_user WHERE web_user.telegram_id = user.telegram_id AND web_user.url =\'{0}\';".format(
+                str(url)))
         result = cursor.fetchall()
 
         conn.commit()
